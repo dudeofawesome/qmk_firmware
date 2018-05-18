@@ -3,13 +3,25 @@
 
 extern keymap_config_t keymap_config;
 
-#define _QWERTY 0
-#define _WORKMAN 0
-#define _FN1 1
-#define _FN2 2
-#define _FN3 3
-#define _FN4 4
-#define _FN5 5
+enum dilly_layers {
+  _QWERTY,
+  _WORKMAN,
+  _FN1,
+  _FN2,
+  _FN3,
+  _FN4,
+  _ADJUST,
+};
+
+enum dilly_keycodes {
+  QWERTY = SAFE_RANGE,
+  WORKMAN,
+  FN1,
+  FN2,
+  FN3,
+  FN4,
+  ADJUST,
+};
 
 #define KC_ KC_TRNS
 #define _______ KC_TRNS
@@ -27,8 +39,9 @@ extern keymap_config_t keymap_config;
 #define KC_SPL2 LT(_FN2, KC_SPC)
 #define KC_B_L1 LT(_FN1, KC_B)
 #define KC_V_L1 LT(_FN1, KC_V)
-#define KC_N_L5 LT(_FN5, KC_N)
-#define KC_K_L5 LT(_FN5, KC_K)
+#define KC_N_L5 LT(_ADJUST, KC_N)
+#define KC_K_L5 LT(_ADJUST, KC_K)
+#define KC_L_L5 LT(_ADJUST, KC_L)
 #define KC_MALT MT(MOD_RALT, KC_M)
 #define KC_BSCT MT(MOD_RCTL, KC_BSPC)
 #define KC_ENTS MT(MOD_RSFT, KC_ENT)
@@ -110,14 +123,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`----+----+----+----+----+----+----+----+----+----'
   ),
 
-  [_FN5] = KC_KEYMAP(
-  //,----+----+----+----+----+----+----+----+----+----.
-     RTOG,RMOD,    ,RST ,RHUI,RSAI,RVAI,    ,    ,    ,
-  //|----+----+----+----+----+----+----+----+----+----|
-         ,    ,DBUG,    ,RHUD,RSAD,RVAD,    ,    ,    ,
-  //|----+----+----+----+----+----+----+----+----+----|
-     BL_S,    ,GUIC,    ,    ,    ,    ,    ,    ,
-  //`----+----+----+----+----+----+----+----+----+----'
+  [_ADJUST] = KEYMAP(
+  //┌───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┬───────┐
+     RGB_TOG,RGB_MOD,_______,RESET  ,RGB_HUI,RGB_SAI,RGB_VAI,_______,_______,QWERTY ,
+  //├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     _______,_______,DEBUG  ,_______,RGB_HUD,RGB_SAD,RGB_VAD,_______,_______,WORKMAN,
+  //├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
+     BL_STEP,_______,KC_GUIC,_______,_______,_______,_______,_______,_______,_______
+  //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
   )
 
 };
