@@ -106,20 +106,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_FN3] = KC_KEYMAP(
   //,----+----+----+----+----+----+----+----+----+----.
-         ,    ,    ,    ,    ,MINS,EQL ,LBRC,RBRC,BSLS,
   //|----+----+----+----+----+----+----+----+----+----|
-     TAB ,    ,    ,    ,    ,COMM,DOT ,SLSH,SCLN,QUOT,
   //|----+----+----+----+----+----+----+----+----+----|
+     TAB ,    ,    ,    ,    ,MINS,EQL ,LBRC,RBRC,BSLS,
+     ESC ,    ,    ,    ,    ,SCLN,QUOT,COMM,DOT ,SLSH,
          ,    ,    ,    ,BSPC,    ,LEFT,DOWN, UP ,RGHT
   //`----+----+----+----+----+----+----+----+----+----'
   ),
 
   [_FN4] = KC_KEYMAP(
   //,----+----+----+----+----+----+----+----+----+----.
-         ,    ,    ,    ,    ,UNDS,PLUS,LCBR,RCBR,PIPE,
   //|----+----+----+----+----+----+----+----+----+----|
-     TAB ,    ,    ,    ,    , LT , GT ,QUES,COLN,DQUO,
   //|----+----+----+----+----+----+----+----+----+----|
+     TAB ,    ,    ,    ,    ,UNDS,PLUS,LCBR,RCBR,PIPE,
+     ESC ,    ,    ,    ,    ,COLN,DQUO, LT , GT ,QUES,
          ,    ,GUIC,    ,BSPC,    ,HOME,PGDN,PGUP,END
   //`----+----+----+----+----+----+----+----+----+----'
   ),
