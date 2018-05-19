@@ -27,6 +27,7 @@ enum dilly_keycodes {
 
 // Tap-Hold keys
 #define KC_ASFT MT(MOD_LSFT, KC_A)
+#define KC_SESC MT(MOD_LSFT, KC_ESC)
 #define KC_F_L3 LT(_FN3, KC_F)
 #define KC_T_L3 LT(_FN3, KC_T)
 #define KC_ZCTL MT(MOD_LCTL, KC_Z)
@@ -95,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────┬────┬────┬────┬────┬────┬────┬────┬────┬────┐
      TAB ,    ,    ,    ,    ,MINS,EQL ,LBRC,RBRC,BSLS,
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
-     ESC ,    ,    ,    ,    ,SCLN,QUOT,COMM,DOT ,SLSH,
+     SESC,    ,    ,    ,    ,SCLN,QUOT,COMM,DOT ,SLSH,
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
          ,    ,    ,    ,BSPC,    ,LEFT,DOWN, UP ,RGHT
   //└────┴────┴────┴────┴────┴────┴────┴────┴────┴────┘
@@ -105,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────┬────┬────┬────┬────┬────┬────┬────┬────┬────┐
      TAB ,    ,    ,    ,    ,UNDS,PLUS,LCBR,RCBR,PIPE,
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
-     ESC ,    ,    ,    ,    ,COLN,DQUO, LT , GT ,QUES,
+     SESC,    ,    ,    ,    ,COLN,DQUO, LT , GT ,QUES,
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
          ,    ,GUIC,    ,BSPC,    ,HOME,PGDN,PGUP,END
   //└────┴────┴────┴────┴────┴────┴────┴────┴────┴────┘
