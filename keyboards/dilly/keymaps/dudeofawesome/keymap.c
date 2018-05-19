@@ -76,12 +76,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_WORKMAN] = KC_KEYMAP(
   //,----+----+----+----+----+----+----+----+----+----.
-      Q  , D  , R  , W  , B  , J  , F  , U  , P  ,ESCS,
   //|----+----+----+----+----+----+----+----+----+----|
+      Q  , D  , R  , W  , B  , J  , F  , U  , P  ,SCLN,
      ASFT, S  , H  ,T_L3, G  , Y  , N  , E  , O  , I  ,
   //|----+----+----+----+----+----+----+----+----+----|
-     ZCTL,XALT,MGUI,C_L4,SPL2,V_L1,K_L5, L  ,BSPC,ENTS
   //`----+----+----+----+----+----+----+----+----+----'
+     ZCTL,XALT,MGUI,C_L4,V_L ,K_R ,L_L5,SPL2,BSPC,ENTS
   ),
 
   //,----+----+----+----+----+----+----+----+----+----.
