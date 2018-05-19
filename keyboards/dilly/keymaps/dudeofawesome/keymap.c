@@ -24,7 +24,6 @@ enum dilly_keycodes {
 };
 
 #define KC_ KC_TRNS
-#define _______ KC_TRNS
 
 // Tap-Hold keys
 #define KC_ASFT MT(MOD_LSFT, KC_A)
