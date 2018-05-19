@@ -37,11 +37,13 @@ enum dilly_keycodes {
 #define KC_C_L4 LT(_FN4, KC_C)
 #define KC_SPL2 LT(LOWER, KC_SPC)
 #define KC_B_L1 LT(RAISE, KC_B)
-#define KC_V_L LT(LOWER, KC_V)
-#define KC_K_R LT(RAISE, KC_K)
 #define KC_N_L5 LT(ADJUST, KC_N)
 #define KC_K_L5 LT(ADJUST, KC_K)
 #define KC_L_L5 LT(ADJUST, KC_L)
+// #define KC_V_L LT(LOWER, KC_V)
+// #define KC_K_R LT(RAISE, KC_K)
+#define KC_V_L LOWER
+#define KC_K_R RAISE
 #define KC_MALT MT(MOD_RALT, KC_M)
 #define KC_BSCT MT(MOD_RCTL, KC_BSPC)
 #define KC_ENTS MT(MOD_RSFT, KC_ENT)
@@ -135,6 +137,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+static bool shift_interrupted[2] = {0, 0};
+static uint16_t scs_timer[2] = {0, 0};
+
 // TODO: change layers 1 and 2 act like planck raise and lower
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -150,18 +155,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     case LOWER:
       if (record->event.pressed) {
+        shift_interrupted[0] = false;
+        scs_timer[0] = timer_read();
+
         layer_on(_LOWER);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
+        if (!shift_interrupted[0] && timer_elapsed(scs_timer[0]) < TAPPING_TERM) {
+          register_code(KC_V);
+          unregister_code(KC_V);
+        }
+
         layer_off(_LOWER);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
     case RAISE:
       if (record->event.pressed) {
+        shift_interrupted[1] = false;
+        scs_timer[1] = timer_read();
+
         layer_on(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       } else {
+        if (!shift_interrupted[1] && timer_elapsed(scs_timer[1]) < TAPPING_TERM) {
+          register_code(KC_K);
+          unregister_code(KC_K);
+        }
+
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
