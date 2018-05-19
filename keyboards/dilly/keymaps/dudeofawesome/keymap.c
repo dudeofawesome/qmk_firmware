@@ -37,13 +37,13 @@ enum dilly_keycodes {
 #define KC_C_L4 LT(_FN4, KC_C)
 #define KC_SPL2 LT(LOWER, KC_SPC)
 #define KC_B_L1 LT(RAISE, KC_B)
-#define KC_N_L5 LT(ADJUST, KC_N)
-#define KC_K_L5 LT(ADJUST, KC_K)
-#define KC_L_L5 LT(ADJUST, KC_L)
 // #define KC_V_L LT(LOWER, KC_V)
 // #define KC_K_R LT(RAISE, KC_K)
 #define KC_V_L LOWER
 #define KC_K_R RAISE
+#define KC_N_L5 LT(_ADJUST, KC_N)
+#define KC_K_L5 LT(_ADJUST, KC_K)
+#define KC_L_L5 LT(_ADJUST, KC_L)
 #define KC_MALT MT(MOD_RALT, KC_M)
 #define KC_BSCT MT(MOD_RCTL, KC_BSPC)
 #define KC_ENTS MT(MOD_RSFT, KC_ENT)
