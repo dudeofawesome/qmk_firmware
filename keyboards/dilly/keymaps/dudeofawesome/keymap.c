@@ -6,8 +6,8 @@ extern keymap_config_t keymap_config;
 enum dilly_layers {
   _QWERTY,
   _WORKMAN,
-  _FN1,
-  _FN2,
+  _RAISE,
+  _LOWER,
   _FN3,
   _FN4,
   _ADJUST,
@@ -16,8 +16,8 @@ enum dilly_layers {
 enum dilly_keycodes {
   QWERTY = SAFE_RANGE,
   WORKMAN,
-  FN1,
-  FN2,
+  RAISE,
+  LOWER,
   FN3,
   FN4,
   ADJUST,
@@ -36,12 +36,13 @@ enum dilly_keycodes {
 #define KC_MGUI MT(MOD_LGUI, KC_M)
 #define KC_V_L4 LT(_FN4, KC_V)
 #define KC_C_L4 LT(_FN4, KC_C)
-#define KC_SPL2 LT(_FN2, KC_SPC)
-#define KC_B_L1 LT(_FN1, KC_B)
-#define KC_V_L1 LT(_FN1, KC_V)
-#define KC_N_L5 LT(_ADJUST, KC_N)
-#define KC_K_L5 LT(_ADJUST, KC_K)
-#define KC_L_L5 LT(_ADJUST, KC_L)
+#define KC_SPL2 LT(LOWER, KC_SPC)
+#define KC_B_L1 LT(RAISE, KC_B)
+#define KC_V_L LT(LOWER, KC_V)
+#define KC_K_R LT(RAISE, KC_K)
+#define KC_N_L5 LT(ADJUST, KC_N)
+#define KC_K_L5 LT(ADJUST, KC_K)
+#define KC_L_L5 LT(ADJUST, KC_L)
 #define KC_MALT MT(MOD_RALT, KC_M)
 #define KC_BSCT MT(MOD_RCTL, KC_BSPC)
 #define KC_ENTS MT(MOD_RSFT, KC_ENT)
@@ -83,8 +84,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`----+----+----+----+----+----+----+----+----+----'
   ),
 
-  [_FN1] = KC_KEYMAP(
   //,----+----+----+----+----+----+----+----+----+----.
+  [_RAISE] = KC_KEYMAP(
       1  , 2  , 3  , 4  , 5  , 6  , 7  , 8  , 9  , 0  ,
   //|----+----+----+----+----+----+----+----+----+----|
   //|----+----+----+----+----+----+----+----+----+----|
@@ -93,8 +94,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          ,    ,    ,    ,    ,    ,    ,    ,    ,
   ),
 
-  [_FN2] = KC_KEYMAP(
   //,----+----+----+----+----+----+----+----+----+----.
+  [_LOWER] = KC_KEYMAP(
      EXLM, AT ,HASH,DLR ,PERC,CIRC,AMPR,ASTR,LPRN,RPRN,
   //|----+----+----+----+----+----+----+----+----+----|
   //|----+----+----+----+----+----+----+----+----+----|
@@ -146,6 +147,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case WORKMAN:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_WORKMAN);
+      }
+      return false;
+    case LOWER:
+      if (record->event.pressed) {
+        layer_on(_LOWER);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      } else {
+        layer_off(_LOWER);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+    case RAISE:
+      if (record->event.pressed) {
+        layer_on(_RAISE);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      } else {
+        layer_off(_RAISE);
+        update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
   }
