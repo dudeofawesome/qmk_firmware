@@ -6,6 +6,7 @@ extern keymap_config_t keymap_config;
 enum dilly_layers {
   _QWERTY,
   _WORKMAN,
+
   _RAISE,
   _LOWER,
   _FN3,
@@ -16,11 +17,14 @@ enum dilly_layers {
 enum dilly_keycodes {
   QWERTY = SAFE_RANGE,
   WORKMAN,
+
   RAISE,
   LOWER,
   FN3,
   FN4,
   ADJUST,
+
+  GUI_UND,
 };
 
 #define KC_ KC_TRNS
@@ -118,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      KC_CAPS,_______,DEBUG  ,_______,RGB_HUD,RGB_SAD,RGB_VAD,_______,_______,WORKMAN,
   //├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     BL_STEP,_______,KC_GUIC,_______,_______,_______,_______,_______,KC_DEL ,_______
+     BL_STEP,_______,GUI_UND,_______,_______,_______,_______,_______,KC_DEL ,_______
   //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
   )
 
@@ -136,6 +140,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         set_single_persistent_default_layer(_WORKMAN);
       }
       return false;
+
     case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
@@ -154,6 +159,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
       return false;
+
+    case GUI_UND: {
+    // TODO: parameterize the keycode to use
+      uint16_t gui_und_kc = LGUI(KC_M);
+      register_code(gui_und_kc);
+      unregister_code(gui_und_kc);
+      return false;
+    }
   }
   return true;
 }
