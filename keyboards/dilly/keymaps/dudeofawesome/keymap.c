@@ -161,10 +161,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
 
     case GUI_UND: {
-    // TODO: parameterize the keycode to use
-      uint16_t gui_und_kc = LGUI(KC_M);
-      register_code(gui_und_kc);
-      unregister_code(gui_und_kc);
+      if (record->event.pressed) {
+        // TODO: parameterize the keycode to use
+        // char str[50];
+        // sprintf(str, "%lu\n", default_layer_state);
+        // send_string(str);
+
+        uint16_t und_kc;
+        switch (default_layer_state) {
+          case 2: //WORKMAN:
+            und_kc = keymaps[default_layer_state - 1][2][2];
+            break;
+          case 1: /* QWERTY: */ default:
+            und_kc = keymaps[default_layer_state - 1][2][2];
+            break;
+        }
+        // uint16_t und_kc = keymaps[biton32(default_layer_state)][2][2];
+        register_mods(MOD_BIT(KC_LSFT));
+        register_code(und_kc);
+        unregister_code(und_kc);
+        unregister_mods(MOD_BIT(KC_LSFT));
+      }
       return false;
     }
   }
