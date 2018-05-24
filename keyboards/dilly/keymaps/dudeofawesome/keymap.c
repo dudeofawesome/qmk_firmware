@@ -160,7 +160,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
-    case GUI_UND: {
+    case GUI_UND:
       if (record->event.pressed) {
         // TODO: parameterize the keycode to use
         // char str[50];
@@ -168,12 +168,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // send_string(str);
 
         uint16_t und_kc;
-        switch (default_layer_state) {
-          case 2: //WORKMAN:
-            und_kc = keymaps[default_layer_state - 1][2][2];
+        switch (biton32(default_layer_state)) {
+          case _WORKMAN:
+            und_kc = keymaps[_WORKMAN][2][2];
             break;
-          case 1: /* QWERTY: */ default:
-            und_kc = keymaps[default_layer_state - 1][2][2];
+          case _QWERTY: default:
+            und_kc = keymaps[_QWERTY][2][2];
             break;
         }
         // uint16_t und_kc = keymaps[biton32(default_layer_state)][2][2];
@@ -183,7 +183,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_mods(MOD_BIT(KC_LSFT));
       }
       return false;
-    }
   }
   return true;
 }
