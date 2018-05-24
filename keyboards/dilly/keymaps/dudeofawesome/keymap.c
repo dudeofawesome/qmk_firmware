@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
       F7 , F8 , F9 ,F10 ,F11 ,F12 ,MINS,EQL ,LBRC,RBRC,
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
-     MPLY,VOLD,VOLU,MNXT,    ,    ,    ,    ,    ,
+     MPLY,VOLD,VOLU,MNXT,    ,    ,    ,    ,PGUP,PGDN
   //└────┴────┴────┴────┴────┴────┴────┴────┴────┴────┘
   ),
 
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
       F1 , F2 , F3 , F4 , F5 , F6 ,UNDS,PLUS,LCBR,RCBR,
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
-     MPLY,VOLD,VOLU,MNXT,    ,    ,    ,    ,    ,
+     MPLY,VOLD,VOLU,MNXT,    ,    ,    ,    ,HOME,END
   //└────┴────┴────┴────┴────┴────┴────┴────┴────┴────┘
   ),
 
