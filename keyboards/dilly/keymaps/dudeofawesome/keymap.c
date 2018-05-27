@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼──────┤
      ASFT, S  , D  ,F_L3, G  , H  , J  , K  , L  ,ESCS  ,
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼──────┤
-     ZCTL,XALT,CGUI,V_L4,SPL2,B_L1,N_L5,MALT,BSPC,SFTENT
+     ZCTL,XALT,CGUI,V_L4,B_L1,N_L5,MALT,SPL2,BSPC,SFTENT
   //└────┴────┴────┴────┴────┴────┴────┴────┴────┴──────┘
   ),
 
