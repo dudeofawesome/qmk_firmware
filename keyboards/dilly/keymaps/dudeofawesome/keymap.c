@@ -6,6 +6,7 @@ extern keymap_config_t keymap_config;
 enum dilly_layers {
   _QWERTY,
   _WORKMAN,
+  _DVORAK,
 
   _RAISE,
   _LOWER,
@@ -17,6 +18,7 @@ enum dilly_layers {
 enum dilly_keycodes {
   QWERTY = SAFE_RANGE,
   WORKMAN,
+  DVORAK,
 
   RAISE,
   LOWER,
@@ -34,19 +36,29 @@ enum dilly_keycodes {
 #define KC_SESC MT(MOD_LSFT, KC_ESC)
 #define KC_F_L3 LT(_FN3, KC_F)
 #define KC_T_L3 LT(_FN3, KC_T)
+#define KC_U_L3 LT(_FN3, KC_U)
 #define KC_ZCTL MT(MOD_LCTL, KC_Z)
+#define KC_SCCTL MT(MOD_LCTL, KC_SCLN)
 #define KC_XALT MT(MOD_LALT, KC_X)
+#define KC_QALT MT(MOD_LALT, KC_Q)
 #define KC_CGUI MT(MOD_LGUI, KC_C)
 #define KC_MGUI MT(MOD_LGUI, KC_M)
+#define KC_JGUI MT(MOD_LGUI, KC_J)
 #define KC_V_L4 LT(_FN4, KC_V)
 #define KC_C_L4 LT(_FN4, KC_C)
 #define KC_SPL2 LT(_LOWER, KC_SPC)
 #define KC_B_L1 LT(_RAISE, KC_B)
+#define KC_K_L4 LT(_FN4, KC_K)
+#define KC_B_L LT(_LOWER, KC_B)
 #define KC_V_L LT(_LOWER, KC_V)
+#define KC_X_L LT(_LOWER, KC_X)
 #define KC_K_R LT(_RAISE, KC_K)
+#define KC_N_R LT(_RAISE, KC_N)
+#define KC_B_R LT(_RAISE, KC_B)
 #define KC_N_L5 LT(_ADJUST, KC_N)
 #define KC_K_L5 LT(_ADJUST, KC_K)
 #define KC_L_L5 LT(_ADJUST, KC_L)
+#define KC_M_L5 LT(_ADJUST, KC_M)
 #define KC_MALT MT(MOD_RALT, KC_M)
 #define KC_BSCT MT(MOD_RCTL, KC_BSPC)
 #define KC_ENTS MT(MOD_RSFT, KC_ENT)
@@ -74,6 +86,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼──────┤
      ZCTL,XALT,MGUI,C_L4,V_L ,K_R ,L_L5,SPL2,BSPC,SFTENT
   //└────┴────┴────┴────┴────┴────┴────┴────┴────┴──────┘
+  ),
+
+  [_DVORAK] = KC_KEYMAP(
+  //┌──────┬────┬────┬────┬────┬────┬────┬────┬────┬────┐
+     SFTENT,SPC ,BSPC, P  , Y  , F  , G  , C  , R  , L  ,
+  //├──────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
+     ASFT  , O  , E  ,U_L3, I  , D  , H  , T  , N  , S  ,
+  //├──────┼────┼────┼────┼────┼────┼────┼────┼────┼────┤
+     SCCTL ,QALT,JGUI,K_L4,X_L ,B_R ,M_L5, W  , V  , Z
+  //└──────┴────┴────┴────┴────┴────┴────┴────┴────┴────┘
   ),
 
   [_RAISE] = KC_KEYMAP(
@@ -122,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
      KC_CAPS,_______,DEBUG  ,_______,RGB_HUD,RGB_SAD,RGB_VAD,_______,_______,WORKMAN,
   //├───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┼───────┤
-     BL_STEP,_______,GUI_UND,_______,_______,_______,_______,_______,KC_DEL ,_______
+     BL_STEP,_______,GUI_UND,_______,_______,_______,_______,_______,KC_DEL ,DVORAK
   //└───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┴───────┘
   )
 
@@ -138,6 +160,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case WORKMAN:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_WORKMAN);
+      }
+      return false;
+    case DVORAK:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_DVORAK);
       }
       return false;
 
@@ -171,6 +198,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         switch (biton32(default_layer_state)) {
           case _WORKMAN:
             und_kc = keymaps[_WORKMAN][2][2];
+            break;
+          case _DVORAK:
+            und_kc = keymaps[_DVORAK][2][2];
             break;
           case _QWERTY: default:
             und_kc = keymaps[_QWERTY][2][2];
