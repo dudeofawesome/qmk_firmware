@@ -46,8 +46,6 @@ enum dilly_keycodes {
 #define KC_JGUI MT(MOD_LGUI, KC_J)
 #define KC_V_L4 LT(_FN4, KC_V)
 #define KC_C_L4 LT(_FN4, KC_C)
-#define KC_SPL2 LT(_LOWER, KC_SPC)
-#define KC_B_L1 LT(_RAISE, KC_B)
 #define KC_K_L4 LT(_FN4, KC_K)
 #define KC_B_L LT(_LOWER, KC_B)
 #define KC_V_L LT(_LOWER, KC_V)
@@ -64,8 +62,6 @@ enum dilly_keycodes {
 #define KC_ENTS MT(MOD_RSFT, KC_ENT)
 #define KC_ESCS MT(MOD_RSFT, KC_ESC)
 
-#define KC_GUIC LGUI(KC_C)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = KC_KEYMAP(
@@ -74,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼──────┤
      ASFT, S  , D  ,F_L3, G  , H  , J  , K  , L  ,ESCS  ,
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼──────┤
-     ZCTL,XALT,CGUI,V_L4,B_L1,N_L5,MALT,SPL2,BSPC,SFTENT
+     ZCTL,XALT,CGUI,V_L4,B_L ,N_R ,M_L5,SPC ,BSPC,SFTENT
   //└────┴────┴────┴────┴────┴────┴────┴────┴────┴──────┘
   ),
 
@@ -84,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼──────┤
      ASFT, S  , H  ,T_L3, G  , Y  , N  , E  , O  , I    ,
   //├────┼────┼────┼────┼────┼────┼────┼────┼────┼──────┤
-     ZCTL,XALT,MGUI,C_L4,V_L ,K_R ,L_L5,SPL2,BSPC,SFTENT
+     ZCTL,XALT,MGUI,C_L4,V_L ,K_R ,L_L5,SPC ,BSPC,SFTENT
   //└────┴────┴────┴────┴────┴────┴────┴────┴────┴──────┘
   ),
 
