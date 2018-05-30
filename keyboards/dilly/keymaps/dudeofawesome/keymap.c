@@ -203,10 +203,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         }
         // uint16_t und_kc = keymaps[biton32(default_layer_state)][2][2];
-        register_mods(MOD_BIT(KC_LSFT));
+        register_mods(MOD_BIT(KC_LGUI));
         register_code(und_kc);
         unregister_code(und_kc);
-        unregister_mods(MOD_BIT(KC_LSFT));
+        unregister_mods(MOD_BIT(KC_LGUI));
       }
       return false;
   }
