@@ -9,6 +9,6 @@
 #ifdef RGBLED_NUM
 #undef RGBLED_NUM
 #endif
-#define RGBLED_NUM 15
+#define RGBLED_NUM 27
 
 #endif
