@@ -146,6 +146,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+void matrix_init_user(void) {
+  rgblight_enable();
+  // rgblight_mode(9);
+  // rgblight_sethsv(0,255,255);
+  rgblight_setrgb(0x00, 0x00, 0x00);
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
