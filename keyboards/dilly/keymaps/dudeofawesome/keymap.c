@@ -190,6 +190,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
 
+    case RGB_TOG:
+      rgblight_sethsv_noeeprom(0, 255, 0);
+      return true;
+    case RGB_MOD:
+      if (record->event.pressed) {
+        rgblight_step();
+      }
+      return false;
+
     case GUI_UND:
       if (record->event.pressed) {
         // TODO: parameterize the keycode to use
@@ -224,22 +233,22 @@ uint32_t layer_state_set_user(uint32_t state) {
   state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
   switch (biton32(state)) {
     case _RAISE:
-      rgblight_sethsv(25, 255, 255);
+      rgblight_sethsv_noeeprom(25, 255, 255);
       break;
     case _LOWER:
-      rgblight_sethsv(200, 255, 255);
+      rgblight_sethsv_noeeprom(200, 255, 255);
       break;
     case _ADJUST:
-      rgblight_sethsv(290, 255, 255);
+      rgblight_sethsv_noeeprom(290, 255, 255);
       break;
     case _FN3:
-      rgblight_sethsv(125, 255, 255);
+      rgblight_sethsv_noeeprom(125, 255, 255);
       break;
     case _FN4:
-      rgblight_sethsv(40, 255, 255);
+      rgblight_sethsv_noeeprom(40, 255, 255);
       break;
-    default: //  for any other layers, or the default layer
-      rgblight_sethsv(0, 255, 0);
+    default:
+      rgblight_sethsv_noeeprom(0, 255, 0);
       break;
   }
   return state;
