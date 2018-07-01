@@ -38,8 +38,12 @@ void tap_dance (qk_tap_dance_state_t *state, void *user_data) {
     case 3:
       rgblight_step();
       break;
-    case 4: default:
+    case 4 ... 9:
       rgblight_step_reverse();
+      break;
+    case 10: default:
+      register_code(KC_PWR);
+      unregister_code(KC_PWR);
       break;
   }
 }
