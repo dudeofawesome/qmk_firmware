@@ -270,6 +270,53 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 };
 
+/**
+ * @param index - Encoder number
+ */
+void encoder_update_user(uint8_t index, bool clockwise) {
+  switch (index) {
+    case 0:
+      switch (biton32(layer_state)) {
+        case _RAISE: case _LOWER:
+          if (clockwise) {
+            // register_code(KC_LALT);
+            // register_code(KC_LSHIFT);
+            register_code(KC__VOLUP);
+            unregister_code(KC__VOLUP);
+            // unregister_code(KC_LSHIFT);
+            // unregister_code(KC_LALT);
+          } else {
+            // register_code(KC_LALT);
+            // register_code(KC_LSHIFT);
+            register_code(KC__VOLDOWN);
+            unregister_code(KC__VOLDOWN);
+            // unregister_code(KC_LSHIFT);
+            // unregister_code(KC_LALT);
+          }
+          break;
+        case _NUMPAD:
+          if (clockwise) {
+            tap_code(KC_RIGHT);
+          } else {
+            tap_code(KC_LEFT);
+          }
+          break;
+        default:
+          if (clockwise) {
+            tap_code(KC_MS_WH_UP);
+            // register_code(KC_MS_WH_UP);
+            // unregister_code(KC_MS_WH_UP);
+          } else {
+            tap_code(KC_MS_WH_DOWN);
+            // register_code(KC_MS_WH_DOWN);
+            // unregister_code(KC_MS_WH_DOWN);
+          }
+          break;
+      }
+      break;
+  }
+}
+
 bool numpadActive = false;
 
 float tone_numpad_on[][2] = SONG(NUMPAD_ON_SOUND);
